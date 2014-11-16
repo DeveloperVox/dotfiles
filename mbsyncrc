@@ -9,7 +9,6 @@ PassCmd "/usr/local/bin/gpg2 -q --for-your-eyes-only --no-tty -d ~/.mbsync/.mbsy
 Port 993
 UseIMAPS yes
 RequireSSL yes
-#CertificateFile /usr/local/share/curl/curl-ca-bundle.crt
 
 IMAPStore raam@actualwebspace.com-remote
 Host imap.gmail.com
@@ -18,7 +17,6 @@ PassCmd "/usr/local/bin/gpg2 -q --for-your-eyes-only --no-tty -d ~/.mbsync/.mbsy
 Port 993
 UseIMAPS yes
 RequireSSL yes
-#CertificateFile /usr/local/share/curl/curl-ca-bundle.crt
 
 IMAPStore raam@websharks-inc.com-remote
 Host imap.gmail.com
@@ -27,7 +25,6 @@ PassCmd "/usr/local/bin/gpg2 -q --for-your-eyes-only --no-tty -d ~/.mbsync/.mbsy
 Port 993
 UseIMAPS yes
 RequireSSL yes
-#CertificateFile /usr/local/share/curl/curl-ca-bundle.crt
 
 # ----------------------------------------------------------------------
 # LOCAL MAIL STORES
