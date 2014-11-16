@@ -5,7 +5,7 @@
 IMAPStore raam@raamdev.com-remote
 Host imap.gmail.com
 User raam@raamdev.com
-PassCmd "/usr/local/bin/gpg2 -q --for-your-eyes-only --no-tty -d ~/.emacs.d/mu4e/.mbsyncpass-raam@raamdev.com.gpg"
+PassCmd "/usr/local/bin/gpg2 -q --for-your-eyes-only --no-tty -d ~/.mbsync/.mbsyncpass-raam@raamdev.com.gpg"
 Port 993
 UseIMAPS yes
 RequireSSL yes
@@ -14,7 +14,7 @@ RequireSSL yes
 IMAPStore raam@actualwebspace.com-remote
 Host imap.gmail.com
 User raam@actualwebspace.com
-PassCmd "/usr/local/bin/gpg2 -q --for-your-eyes-only --no-tty -d ~/.emacs.d/mu4e/.mbsyncpass-raam@actualwebspace.com.gpg"
+PassCmd "/usr/local/bin/gpg2 -q --for-your-eyes-only --no-tty -d ~/.mbsync/.mbsyncpass-raam@actualwebspace.com.gpg"
 Port 993
 UseIMAPS yes
 RequireSSL yes
@@ -23,7 +23,7 @@ RequireSSL yes
 IMAPStore raam@websharks-inc.com-remote
 Host imap.gmail.com
 User raam@websharks-inc.com
-PassCmd "/usr/local/bin/gpg2 -q --for-your-eyes-only --no-tty -d ~/.emacs.d/mu4e/.mbsyncpass-raam@websharks-inc.com.gpg"
+PassCmd "/usr/local/bin/gpg2 -q --for-your-eyes-only --no-tty -d ~/.mbsync/.mbsyncpass-raam@websharks-inc.com.gpg"
 Port 993
 UseIMAPS yes
 RequireSSL yes
