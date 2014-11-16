@@ -1,0 +1,26 @@
+[gui]
+	recentrepo = /Users/raam/test-git-repo
+[user]
+	name = Raam Dev
+	email = raam@raamdev.com
+[core]
+	editor = emacs
+	excludefile = /Users/raam/.gitignore_global
+	autocrlf = input
+	eol = lf
+[color]
+	ui = true
+[alias]
+	co = checkout
+	st = status
+	logg = log --graph --decorate --oneline --abbrev-commit --all
+	log1 = log --oneline
+	up = "!git remote update -p; git merge --ff-only @{u}"
+[push]
+	default = simple
+[merge]
+	ff = yes
+[help]
+	autocorrect = 1
+[github]
+	user = raamdev

@@ -1,0 +1,264 @@
+# ----------------------------------------------------------------------
+# REMOTE MAIL STORES
+# ----------------------------------------------------------------------
+
+IMAPStore raam@raamdev.com-remote
+Host imap.gmail.com
+User raam@raamdev.com
+PassCmd "/usr/local/bin/gpg2 -q --for-your-eyes-only --no-tty -d ~/.emacs.d/mu4e/.mbsyncpass-raam@raamdev.com.gpg"
+Port 993
+UseIMAPS yes
+RequireSSL yes
+#CertificateFile /usr/local/share/curl/curl-ca-bundle.crt
+
+IMAPStore raam@actualwebspace.com-remote
+Host imap.gmail.com
+User raam@actualwebspace.com
+PassCmd "/usr/local/bin/gpg2 -q --for-your-eyes-only --no-tty -d ~/.emacs.d/mu4e/.mbsyncpass-raam@actualwebspace.com.gpg"
+Port 993
+UseIMAPS yes
+RequireSSL yes
+#CertificateFile /usr/local/share/curl/curl-ca-bundle.crt
+
+IMAPStore raam@websharks-inc.com-remote
+Host imap.gmail.com
+User raam@websharks-inc.com
+PassCmd "/usr/local/bin/gpg2 -q --for-your-eyes-only --no-tty -d ~/.emacs.d/mu4e/.mbsyncpass-raam@websharks-inc.com.gpg"
+Port 993
+UseIMAPS yes
+RequireSSL yes
+#CertificateFile /usr/local/share/curl/curl-ca-bundle.crt
+
+# ----------------------------------------------------------------------
+# LOCAL MAIL STORES
+# ----------------------------------------------------------------------
+
+MaildirStore raam@raamdev.com-local
+Path ~/Maildir/raam@raamdev.com/
+Inbox ~/Maildir/raam@raamdev.com/INBOX
+
+MaildirStore raam@actualwebspace.com-local
+Path ~/Maildir/raam@actualwebspace.com/
+Inbox ~/Maildir/raam@actualwebspace.com/INBOX
+
+MaildirStore raam@websharks-inc.com-local
+Path ~/Maildir/raam@websharks-inc.com/
+Inbox ~/Maildir/raam@websharks-inc.com/INBOX
+
+MaildirStore raam@raamdev.com-local-archive
+Path ~/Maildir-archive/raam@raamdev.com/
+
+MaildirStore raam@actualwebspace.com-local-archive
+Path ~/Maildir-archive/raam@actualwebspace.com/
+
+MaildirStore raam@websharks-inc.com-local-archive
+Path ~/Maildir-archive/raam@websharks-inc.com/
+
+# ----------------------------------------------------------------------
+# CHANNELS (defines how remote stores are synced with local stores)
+# ----------------------------------------------------------------------
+
+###### raam@raamdev.com ######
+
+Channel raam@raamdev.com-inbox
+Master ":raam@raamdev.com-remote:INBOX"
+Slave ":raam@raamdev.com-local:INBOX"
+Create Slave
+SyncState *
+Sync All
+Expunge Both
+
+Channel raam@raamdev.com-trash
+Master ":raam@raamdev.com-remote:Trash"
+Slave ":raam@raamdev.com-local:Trash"
+Create Slave
+SyncState *
+Sync All
+Expunge Both
+
+Channel raam@raamdev.com-archive
+Master ":raam@raamdev.com-remote:[Gmail]/All Mail"
+Slave ":raam@raamdev.com-local:Archive"
+Create Slave
+SyncState *
+Expunge None
+Sync Push Flags
+
+Channel raam@raamdev.com-allmail
+Master ":raam@raamdev.com-remote:[Gmail]/All Mail"
+Slave ":raam@raamdev.com-local-archive:Archive"
+Create Slave
+SyncState *
+Expunge None
+Sync Pull New Flags
+
+Channel raam@raamdev.com-subscriptions
+Master ":raam@raamdev.com-remote:[Gmail]/Subscriptions"
+Slave ":raam@raamdev.com-local:Subscriptions"
+Create Both
+SyncState *
+Sync All
+Expunge Both
+
+Channel raam@raamdev.com-drafts
+Master ":raam@raamdev.com-remote:[Gmail]/Drafts"
+Slave ":raam@raamdev.com-local:Drafts"
+Create Slave
+SyncState *
+Sync All
+Expunge Both
+
+Channel raam@raamdev.com-sent
+Master ":raam@raamdev.com-remote:[Gmail]/Sent Mail"
+Slave ":raam@raamdev.com-local:Sent"
+Create Slave
+SyncState *
+Sync All
+Expunge Both
+
+Channel raam@raamdev.com-googlealerts
+Master ":raam@raamdev.com-remote:[Gmail]/Google Alerts"
+Slave ":raam@raamdev.com-local:Google-Alerts"
+Create Slave
+SyncState *
+Sync All
+Expunge Both
+
+###### raam@actualwebspace.com ######
+
+Channel raam@actualwebspace.com-inbox
+Master ":raam@actualwebspace.com-remote:INBOX"
+Slave ":raam@actualwebspace.com-local:INBOX"
+Create Slave
+SyncState *
+Sync All
+Expunge Both
+
+Channel raam@actualwebspace.com-archive
+Master ":raam@actualwebspace.com-remote:[Gmail]/All Mail"
+Slave ":raam@actualwebspace.com-local:Archive"
+Expunge None
+Create Slave
+SyncState *
+Sync Push Flags
+
+Channel raam@actualwebspace.com-allmail
+Master ":raam@actualwebspace.com-remote:[Gmail]/All Mail"
+Slave ":raam@actualwebspace.com-local-archive:Archive"
+Expunge None
+Create Slave
+SyncState *
+Sync Pull New Flags
+
+Channel raam@actualwebspace.com-support
+Master ":raam@actualwebspace.com-remote:[Gmail]/Support"
+Slave ":raam@actualwebspace.com-local:Support"
+Create Slave
+SyncState *
+Sync All
+Expunge Both
+
+###### raam@websharks-inc.com ######
+
+Channel raam@websharks-inc.com-inbox
+Master ":raam@websharks-inc.com-remote:INBOX"
+Slave ":raam@websharks-inc.com-local:INBOX"
+Create Slave
+SyncState *
+Sync All
+Expunge Both
+
+Channel raam@websharks-inc.com-archive
+Master ":raam@websharks-inc.com-remote:All Mail"
+Slave ":raam@websharks-inc.com-local:Archive"
+Expunge None
+Create Slave
+SyncState *
+Sync Push Flags
+
+Channel raam@websharks-inc.com-allmail
+Master ":raam@websharks-inc.com-remote:All Mail"
+Slave ":raam@websharks-inc.com-local-archive:Archive"
+Expunge None
+Create Slave
+SyncState *
+Sync Pull New Flags
+
+Channel raam@websharks-inc.com-wpnews
+Master ":raam@websharks-inc.com-remote:[Gmail]/WordPress News"
+Slave ":raam@websharks-inc.com-local:WordPress-News"
+Create Slave
+SyncState *
+Sync All
+Expunge Both
+
+Channel raam@websharks-inc.com-contactform
+Master ":raam@websharks-inc.com-remote:[Gmail]/Contact Form"
+Slave ":raam@websharks-inc.com-local:Contact-Form"
+Create Slave
+SyncState *
+Sync All
+Expunge Both
+
+Channel raam@websharks-inc.com-sent
+Master ":raam@websharks-inc.com-remote:[Gmail]/Sent Mail"
+Slave ":raam@websharks-inc.com-local:Sent"
+Create Slave
+SyncState *
+Sync All
+Expunge Both
+
+Channel raam@websharks-inc.com-drafts
+Master ":raam@websharks-inc.com-remote:[Gmail]/Drafts"
+Slave ":raam@websharks-inc.com-local:Drafts"
+Create Slave
+SyncState *
+Sync All
+Expunge Both
+
+# ----------------------------------------------------------------------
+# GROUPS (groups channels together for batch syncing of multiple stores;
+# e.g., `mbsync -c ~/.mbsyncrc backup` to run the `backup` Group)
+# ----------------------------------------------------------------------
+
+Group raam@raamdev.com
+Channel raam@raamdev.com-trash
+Channel raam@raamdev.com-inbox
+Channel raam@raamdev.com-allmail
+Channel raam@raamdev.com-sent
+Channel raam@raamdev.com-drafts
+Channel raam@raamdev.com-subscriptions
+Channel raam@raamdev.com-googlealerts
+
+Group raam@actualwebspace.com
+Channel raam@actualwebspace.com-inbox
+Channel raam@actualwebspace.com-support
+
+Group raam@websharks-inc.com
+Channel raam@websharks-inc.com-inbox
+Channel raam@websharks-inc.com-allmail
+Channel raam@websharks-inc.com-sent
+Channel raam@websharks-inc.com-drafts
+Channel raam@websharks-inc.com-wpnews
+
+Group backup
+Channel raam@raamdev.com-allmail
+Channel raam@actualwebspace.com-allmail
+Channel raam@websharks-inc.com-allmail
+
+Group mu4e
+Channel raam@raamdev.com-inbox
+Channel raam@raamdev.com-archive
+Channel raam@raamdev.com-sent
+Channel raam@raamdev.com-drafts
+Channel raam@raamdev.com-subscriptions
+Channel raam@raamdev.com-googlealerts
+Channel raam@actualwebspace.com-inbox
+Channel raam@actualwebspace.com-archive
+Channel raam@actualwebspace.com-support
+Channel raam@websharks-inc.com-inbox
+Channel raam@websharks-inc.com-archive
+Channel raam@websharks-inc.com-sent
+Channel raam@websharks-inc.com-drafts
+Channel raam@websharks-inc.com-wpnews
+Channel raam@websharks-inc.com-contactform
