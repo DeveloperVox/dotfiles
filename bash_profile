@@ -9,7 +9,7 @@ alias flushdns='sudo dscacheutil -flushcache'
 
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 export PATH=/usr/local/git/bin:/Users/raam/bin:$PATH
-export EDITOR=/usr/bin/vi
+export EDITOR=/usr/local/bin/emacs
 export MAMP_PHP=/Applications/MAMP/bin/php/php5.4.10/bin
 export PATH="$MAMP_PHP:$PATH"
 
