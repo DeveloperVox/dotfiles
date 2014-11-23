@@ -1,3 +1,4 @@
+
 (setq package-enable-at-startup nil)
 (package-initialize)
 
@@ -26,6 +27,12 @@
 ;; Edit Server (used by Chrome plugin to edit form fields in emacs)
 (require 'edit-server)
 (edit-server-start)
+
+;; Start the Emacs server to for opening files via the emacsclient
+(server-start)
+
+;; Launch in full-screen mode
+(toggle-frame-fullscreen)
 
 ;; sort directories first
 (setq insert-directory-program "/usr/local/bin/gls")
