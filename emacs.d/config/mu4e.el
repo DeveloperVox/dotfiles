@@ -50,15 +50,39 @@
   (setq raam-mu4e-account-alist
         '(("raam@raamdev.com"
            (user-mail-address "raam@raamdev.com")
-           (user-full-name "Raam Dev"))
+           (user-full-name "Raam Dev")
+	   (mu4e-drafts-folder "/raam@raamdev.com/Drafts")
+	   (mu4e-sent-folder "/raam@raamdev.com/Sent")
+	   ;;(mu4e-trash-folder "/raam@raamdev.com/Trash") ;; not used with Gmail--see below
+	   )
 
           ("raam@actualwebspace.com"
            (user-mail-address "raam@actualwebspace.com")
-           (user-full-name "Raam Dev"))
+           (user-full-name "Raam Dev")
+	   (mu4e-drafts-folder "/raam@actualwebspace.com/Drafts")
+	   (mu4e-sent-folder "/raam@actualwebspace.com/Sent")
+	   ;;(mu4e-trash-folder "/raam@actualwebspace.com/Trash") ;; not used with Gmail--see below
+	   )
 
 	  ("raam@websharks-inc.com"
            (user-mail-address "raam@websharks-inc.com")
-           (user-full-name "Raam Dev"))))
+           (user-full-name "Raam Dev")
+	   (mu4e-drafts-folder "/raam@websharks-inc.com/Drafts")
+	   (mu4e-sent-folder "/raam@websharks-inc.com/Sent")
+	   ;;(mu4e-trash-folder "/raam@websharks-inc.com/Trash") ;; not used with Gmail--see below
+	   )))
+
+;; GMail is configured to "Archive the message" when a message is
+;; marked as deleted and expunged from the last visible IMAP folder.
+;; This means that we don't need to sync a local trash directory
+;; with the remote IMAP server; simply syncing the fact that the
+;; message was deleted is enough.
+(setq mu4e-trash-folder "/trash")
+
+;; email addresses to consider 'my email addresses'
+(setq mu4e-user-mail-address-list
+   (quote
+    ("raam@raamdev.com" "raam@websharks-inc.com" "raam@actualwebspace.com")))
 
 ;; tell message-mode how to send mail
 (setq message-send-mail-function 'smtpmail-send-it)
@@ -79,7 +103,7 @@
            (flyspell-mode)))
 
 ;; the "Indexing messages..." message gets old fast...
-(setq mu4e-hide-index-messages t)
+;;(setq mu4e-hide-index-messages t)
 
 ;; use w3m for parsing HTML emails
 (setq mu4e-html2text-command
@@ -129,6 +153,62 @@
 ;; use imagemagick, if available
 (when (fboundp 'imagemagick-register-types)
    (imagemagick-register-types))
+
+;; Smart refiling
+;; See http://www.djcbsoftware.nl/code/mu/mu4e/Smart-refiling.html#Smart-refiling
+(setq mu4e-refile-folder
+  (lambda (msg)
+    (cond
+      ;; messages to raam@raamdev.com
+      ((mu4e-message-contact-field-matches msg :to
+        "raam@raamdev.com")
+       "/raam@raamdev.com/Archive")
+      ;; messages to raam@websharks-inc.com
+      ((mu4e-message-contact-field-matches msg :to
+        "raam@websharks-inc.com")
+      	"/raam@websharks-inc.com/Archive")
+      ;; messages to raam@actualwebspace.com
+      ((mu4e-message-contact-field-matches msg :to
+        "raam@actualwebspace.com")
+       "/raam@actualwebspace.com/Archive")
+      ;; messages to support@actualwebspace.com
+      ((mu4e-message-contact-field-matches msg :to
+        "support@actualwebspace.com")
+       "/raam@actualwebspace.com/Archive")
+      ;; messages to billing@actualwebspace.com
+      ((mu4e-message-contact-field-matches msg :to
+        "billing@actualwebspace.com")
+       "/raam@actualwebspace.com/Archive")
+      ;; messages to paypal@actualwebspace.com
+      ((mu4e-message-contact-field-matches msg :to
+        "paypal@actualwebspace.com")
+       "/raam@actualwebspace.com/Archive")
+      ;; messages with football or soccer in the subject go to /football
+;;      ((string-match "football\\|soccer"
+;;        (mu4e-message-field msg :subject))
+;;        "/football")
+      ;; messages sent by raam@raamdev.com go to the sent folder
+      ((find-if
+	 (lambda (addr)
+	   (mu4e-message-contact-field-matches msg :from addr))
+	 "raam@raamdev.com")
+       "/raam@raamdev.com/Sent")
+      ;; messages sent by raam@websharks-inc.com go to the sent folder
+      ((find-if
+	 (lambda (addr)
+	   (mu4e-message-contact-field-matches msg :from addr))
+	 "raam@websharks-inc.com")
+	"/raam@websharks-inc.com/Sent")
+      ;; messages sent by raam@actualwebspace.com go to the sent folder
+      ((find-if
+	 (lambda (addr)
+	   (mu4e-message-contact-field-matches msg :from addr))
+	 "raam@actualwebspace.com")
+	"/raam@actualwebspace.com/Sent")
+      
+      ;; everything else goes to /archive
+      ;; important to have a catch-all at the end!
+      (t  "/archive"))))
 
 ;; Functions
 ;; -----------------------------------------------
