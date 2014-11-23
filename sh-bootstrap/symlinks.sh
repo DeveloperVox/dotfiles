@@ -14,3 +14,4 @@ symlink bashrc        .bashrc
 symlink bash_profile .bash_profile
 symlink mbsyncrc     .mbsyncrc
 symlink Library/KeyBindings/DefaultKeyBinding.dict Library/KeyBindings/DefaultKeyBinding.dict
+symlink emacs.d/News  News
