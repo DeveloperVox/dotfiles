@@ -1,4 +1,8 @@
 
+;; ===============================================
+;; General org-mode configuration
+;; ===============================================
+
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (add-hook 'org-mode-hook 'turn-on-font-lock) ; Org buffers only
 (add-hook 'org-mode-hook
@@ -6,13 +10,13 @@
 	  "My settings for org-mode."
 	  (set-visual-wrap-column '80)))
 
-
 ;; Set variable with path to journal.org
 (defvar org-journal-file "~/Documents/journal.org"
   "Path to journal.ledger file. Used as an easy reference, primarily in org-capture-templates.")
 
 ;; =================================================
 ;; Ledger-related stuff
+;; (I interface with ledger via org-capture)
 ;; =================================================
 
 ;; Set variable with path to journal.ledger
@@ -30,6 +34,17 @@
 ")
 		)
        org-capture-templates)
+
+(setq org-capture-templates
+      (append '(("a" "Auto Loan Payment" plain
+                 (file ledger-journal-file)
+	        "%(org-read-date) * Auto Loan Payment
+  Liabilities:Eastern-Bank-Subaru-Outback-Auto-Loan %^{Total Amount Paid (incl. fees)|459.93}
+  Assets:PayPal-Personal -%^{Amount Applied to Loan|458.43}
+  Expenses:Transaction-Fees -%^{Processing Fee|1.50}
+")
+		)
+       org-capture-templates))
 
 (setq org-capture-templates
       (append '(("i" "Income Ledger Entry")
@@ -128,3 +143,21 @@
 	 "** %^{Your Location or the Entry Title} %U %^g\n%i%?"))
       org-capture-templates))
 
+;; =================================================
+;; elfeed-org-related stuff
+;; =================================================
+
+;; Load elfeed-org - Allows configuring elfeed via org-mode file
+(require 'elfeed-org)
+
+;; Initialize elfeed-org
+;; This hooks up elfeed-org to read the configuration when elfeed
+;; is started with =M-x elfeed=
+(elfeed-org)
+
+;; Optionally specify a number of files containing elfeed
+;; configuration. If not set then the location below is used.
+(setq rmh-elfeed-org-files (list "~/Documents/feeds.org"))
+(setq rmh-elfeed-org-tree-id "elfeed")
+
+;; ================================================
