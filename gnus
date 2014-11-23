@@ -36,29 +36,7 @@
       ;;                 gnus-score-find-score-files-function 'gnus-score-find-single
         ;;               gnus-summary-line-format "%U%R%z%d %I%(%[ %s %]%)\n")
 
-(load-file "~/News/rss/nnrss.el")
-
-(defun -nnrss-fetch-async ()
-  "Run a dynamic asynchronous shell command to fetch RSS feeds.
-Creates a dynamic shell command to fetch RSS feeds in
-`nnrss-group-alist' and runs using `async-shell-command'."
-  (interactive)
-  (or nnrss-use-local
-      (setq nnrss-use-local t))
-  (let* ((rssdir (expand-file-name nnrss-directory))
-         list
-         (fetch-str
-          (dolist (var nnrss-server-data list)
-            (let* ((url (or (nth 2 var)
-                            (second (assoc (car var)
-                                           nnrss-group-alist)))))
-              (setq list
-                    (concat list " -o '" rssdir
-                            (nnrss-translate-file-chars (concat (car var) ".xml"))
-                            "' '" url "'")))))
-         (command (concat "curl" fetch-str)))
-    (async-shell-command command "*nnRSS Fetch RSS Process*")))
-
+(load-file "~/.emacs.d/News/rss/nnrss.el")
 
 (setq gnus-summary-line-format "%U%R%z %(%&user-date;  %-15,15f %* %B%s%)\n"
   gnus-user-date-format-alist '((t . "%Y-%m-%d %H:%M"))

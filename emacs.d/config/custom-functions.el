@@ -47,3 +47,27 @@
 
 (when window-system
   (global-set-key (kbd "C-x C-c") 'ask-before-closing))
+
+;;-----------------------------------------------------------------------
+;; See http://www.paulwrankin.com/blog/2014/10/09/asynchronous-rss-fetching-in-gnus/
+(defun -nnrss-fetch-async ()
+  "Run a dynamic asynchronous shell command to fetch RSS feeds.
+Creates a dynamic shell command to fetch RSS feeds in
+`nnrss-group-alist' and runs using `async-shell-command'."
+  (interactive)
+  (or nnrss-use-local
+      (setq nnrss-use-local t))
+  (let* ((rssdir (expand-file-name nnrss-directory))
+         list
+         (fetch-str
+          (dolist (var nnrss-server-data list)
+            (let* ((url (or (nth 2 var)
+                            (second (assoc (car var)
+                                           nnrss-group-alist)))))
+              (setq list
+                    (concat list " -o '" rssdir
+                            (nnrss-translate-file-chars (concat (car var) ".xml"))
+                            "' '" url "'")))))
+         (command (concat "curl" fetch-str)))
+    (async-shell-command command "*nnRSS Fetch RSS Process*")))
+
