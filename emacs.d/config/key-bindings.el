@@ -4,6 +4,8 @@
 (global-set-key (kbd "C-x n") 'gnus)
 (global-set-key "\C-cw" 'wc-mode)
 (global-set-key (kbd "C-x m") 'mu4e)
+(global-set-key (kbd "C-x e") 'elfeed)
+(global-set-key (kbd "C-x t") 'eshell)
 
 ;; org-mode
 (global-set-key "\C-cl" 'org-store-link)
