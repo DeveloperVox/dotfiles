@@ -5,7 +5,7 @@ symlink() {
 	ln -fsv $HOME/dotfiles/$1 $HOME/$2
 }
 
-symlink gnus         .gnus
+symlink gnus.el         .gnus.el
 symlink emacs.d      .emacs.d
 symlink gitconfig    .gitconfig
 symlink gitignore_global .gitignore_global
