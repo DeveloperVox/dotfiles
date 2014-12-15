@@ -71,3 +71,25 @@ Creates a dynamic shell command to fetch RSS feeds in
          (command (concat "curl" fetch-str)))
     (async-shell-command command "*nnRSS Fetch RSS Process*")))
 
+;;-----------------------------------------------------------------
+;; See http://punchagan.muse-amuse.in/posts/refile-to-date-tree.html
+(defun my-org-refile-to-journal ()
+  "Refile an entry to journal file's date-tree"
+  (interactive)
+  (require 'org-datetree)
+  (let ((journal (expand-file-name "journal.org" org-directory))
+	post-date)
+    (setq post-date (or (org-entry-get (point) "TIMESTAMP_IA")
+			(org-entry-get (point) "TIMESTAMP")))
+    (setq post-date (nthcdr 3 (parse-time-string post-date)))
+    (setq post-date (list (cadr post-date)
+			  (car post-date)
+			  (caddr post-date)))
+    (org-cut-subtree)
+    (with-current-buffer (or (find-buffer-visiting journal)
+			     (find-file-noselect journal))
+      (save-excursion
+	(org-datetree-file-entry-under (current-kill 0) post-date)
+	(bookmark-set "org-refile-last-stored")))
+       (message "Refiled to %s" journal)))
+    

@@ -12,6 +12,7 @@
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
 (define-key global-map "\C-cc" 'org-capture)
+(define-key org-mode-map "\C-cm" 'my-org-refile-to-journal)
 
 ;; Create keyboard shortcut to quickly open ledger journal file
 (define-key global-map "\C-xj" (defun my-open-org-journal ()
