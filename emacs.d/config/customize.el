@@ -12,6 +12,7 @@
  '(custom-safe-themes
    (quote
     ("645599a2aab022fd7677124515a3104a60ba64d2cafdd77a6e7703f8ae97250c" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "7fbb8d064286706fb1e319c9d3c0a8eafc2efe6b19380aae9734c228b05350ae" default)))
+ '(debug-on-error t)
  '(delete-old-versions t)
  '(display-time-24hr-format t)
  '(display-time-day-and-date t)
@@ -26,6 +27,7 @@
  '(line-number-mode t)
  '(menu-bar-mode t)
  '(ns-use-native-fullscreen nil)
+ '(org-archive-location "~/Documents/journal.org::datetree/")
  '(scroll-bar-mode nil)
  '(scroll-error-top-bottom nil)
  '(set-mark-command-repeat-pop nil)
