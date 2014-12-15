@@ -39,6 +39,10 @@ brew install vim --override-system-vi
 brew install homebrew/dupes/grep
 brew install homebrew/dupes/screen
 
+# Install gettext and link it
+brew install gettext
+brew link --force gettext
+
 # Install other useful binaries.
 brew install git
 brew install ack
