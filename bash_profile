@@ -55,3 +55,5 @@ PROMPT_COMMAND=prompt_command
 pwdtail () { #returns the last 2 fields of the working directory
     pwd|awk -F/ '{nlast = NF -1;print $nlast"/"$NF}'
 }
+
+export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
