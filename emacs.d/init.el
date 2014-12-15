@@ -19,6 +19,7 @@
 (load-file "~/.emacs.d/config/org-mode.el")
 (load-file "~/.emacs.d/config/key-bindings.el")
 (load-file "~/.emacs.d/config/custom-functions.el")
+(load-file "~/.emacs.d/config/gnus.el")
 
 ;; Ledger Mode
 (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/ledger/")
@@ -80,6 +81,7 @@
   (require 'package)
   (package-initialize)
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+  (add-to-list 'package-archives '("mmarmalade" . "http://marmalade-repo.org/") t)
   )
 
 ;; Load Sunburst theme
