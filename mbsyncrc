@@ -166,7 +166,7 @@ Sync All
 Expunge Both
 
 Channel raam@websharks-inc.com-archive
-Master ":raam@websharks-inc.com-remote:All Mail"
+Master ":raam@websharks-inc.com-remote:[Gmail]/All Mail"
 Slave ":raam@websharks-inc.com-local:Archive"
 Expunge None
 Create Slave
@@ -174,7 +174,7 @@ SyncState *
 Sync Push Flags
 
 Channel raam@websharks-inc.com-allmail
-Master ":raam@websharks-inc.com-remote:All Mail"
+Master ":raam@websharks-inc.com-remote:[Gmail]/All Mail"
 Slave ":raam@websharks-inc.com-local-archive:Archive"
 Expunge None
 Create Slave
