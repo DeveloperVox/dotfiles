@@ -8,6 +8,7 @@ alias ll='ls -hl'
 alias flushdns='sudo dscacheutil -flushcache'
 alias ec='/usr/local/bin/emacsclient -n'
 alias E="SUDO_EDITOR=\"emacsclient\" sudo -e"
+alias git='hub'
 
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 export PATH=/usr/local/git/bin:/Users/raam/bin:$PATH
